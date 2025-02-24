@@ -1,0 +1,187 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id  Int @id @default(autoincrement())
+  login String @unique
+  password String
+  email String?
+  social String?
+  firstName String?
+  secondName String?
+  phone String?
+  country String?
+  city String?
+  street String?
+  house String?
+  building String?
+  entrance String?
+  floor String?
+  apartment String?
+  intercom String?
+  cart Json?
+  userSeries UserSeries[]
+  userNfts UserNft[]
+  role Role @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserSeries {
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  series Series @relation(fields: [seriesId], references: [id], onDelete: Cascade)
+  seriesId Int
+  userId Int
+  saved Boolean? @default(false)
+  checkedItems Product[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserNft {
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+  nft Nft @relation(fields: [nftId], references: [id], onDelete: Cascade)
+  nftId Int
+  saved Boolean? @default(false)
+  checkedItems Product[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
+
+
+model Product {
+  id Int @id @default(autoincrement())
+  type PropductType @default(Figure)
+  name String
+  number Int
+  price Float? @default(0)
+  description String?
+  whereToShow String[]
+  stock Int @default(0)
+  catalogPreview Image? @relation("ProductCatalogPreview-Image", fields: [catalogPreviewId], references: [id])
+  catalogPreviewId Int?
+  seriesPreview Image? @relation("ProductSeriesPreview-Image", fields: [seriesPreviewId], references: [id])
+  seriesPreviewId Int?
+  nftPreview Image? @relation("ProductNftPreview-Image", fields: [nftPreviewId], references: [id])
+  nftPreviewId Int?
+  images Image[] @relation("ProductImages-Image")
+  stickers Image[] @relation("ProductStickers-Image")
+  series Series? @relation(fields: [seriesId], references: [id])
+  seriesId Int?
+  nft Nft? @relation(fields: [nftId], references: [id])
+  nftId Int?
+  exclusive String?
+  features String[]
+  category String?
+  userSeries UserSeries[]
+  userNft UserNft[]
+  new Boolean @default(false)
+  nftStandartSetFor NftPage[] @relation("NftStandartSet-Product")
+  nftPremiumsSetFor NftPage[] @relation("NftPremiumSet-Product")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum PropductType {
+Figure
+CardsSet
+}
+
+
+model Image {
+  id Int @id @default(autoincrement())
+  name String
+  url String
+  productImagesFor Product[] @relation("ProductImages-Image")
+  productStickersFor Product[] @relation("ProductStickers-Image")
+  productCatalogPreviewFor Product[] @relation("ProductCatalogPreview-Image")
+  productSeriesPreviewFor Product[] @relation("ProductSeriesPreview-Image")
+  productNftPreviewFor Product[] @relation("ProductNftPreview-Image")
+  seriesFigureFor Series[] @relation("SeriesFigure-Image")
+  seriesPreviewFor Series[] @relation("SeriesPreview-Image")
+  seriesImageFor Series[] @relation("SeriesImage-Image")
+  nftFigureFor Nft[] @relation("NftFigure-Image")
+  nftIPreviewFor  Nft[] @relation("NftPreview-Image")
+  nftImageFor Nft[] @relation("NftImage-Image")
+  nftCalendarFor Nft[] @relation("NftCalendar-Image")
+  NftPage NftPage[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Series {
+  id Int @id @default(autoincrement())
+  name String
+  originalName String
+  primaryFigureName String?
+  primaryFigureNumber Int?
+  primaryFigureImage Image? @relation( "SeriesFigure-Image", fields: [primaryFigureImageId], references: [id])
+  primaryFigureImageId Int?
+  preview Image? @relation("SeriesPreview-Image", fields: [previewImageId], references: [id])
+  previewImageId Int?
+  image Image? @relation("SeriesImage-Image", fields: [imageId] , references: [id])
+  imageId Int?
+  products Product[]
+  userSeries UserSeries[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Nft {
+  id Int @id @default(autoincrement())
+  name String
+  originalName String
+  primaryFigureName String?
+  primaryFigureNumber Int?
+  event1_desc String?
+  event1_date DateTime?
+  event2_desc String?
+  event2_date DateTime?
+  event3_desc String?
+  event3_date DateTime?
+  event4_desc String?
+  event4_quarter Int?
+  event4_completed Boolean?
+  primaryFigureImage Image? @relation( "NftFigure-Image", fields: [primaryFigureImageId], references: [id])
+  primaryFigureImageId Int?
+  preview Image? @relation("NftPreview-Image", fields: [previewImageId], references: [id])
+  previewImageId Int?
+  image Image? @relation("NftImage-Image", fields: [imageId], references: [id])
+  imageId Int?
+  calendarImage Image? @relation("NftCalendar-Image", fields: [calendarImageId], references: [id])
+  calendarImageId Int?
+  products Product[]
+  userNfts UserNft[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model NftPage {
+  id Int @id @default(1)
+  description String?
+  standartSetQuantity Int?
+  premiumSetQuantity Int?
+  newReleasePreview Image? @relation(fields: [newReleasePreviewId], references: [id])
+  timer DateTime?
+  newReleasePreviewId Int?
+  standartSet Product? @relation( "NftStandartSet-Product" ,fields: [standartSetId], references: [id], onDelete: Cascade)
+  standartSetId Int?
+  premiumSet Product? @relation( "NftPremiumSet-Product" , fields: [premiumSetId], references: [id], onDelete: Cascade)
+  premiumSetId Int?
+}

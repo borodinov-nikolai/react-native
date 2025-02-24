@@ -1,0 +1,559 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthResponse {
+  jwt: String!
+}
+
+input CreateImageInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateNftInput {
+  calendarImageId: Int
+  event1_date: DateTime
+  event1_desc: String
+  event2_date: DateTime
+  event2_desc: String
+  event3_date: DateTime
+  event3_desc: String
+  event4_completed: Boolean
+  event4_desc: String
+  event4_quarter: Float
+  imageId: Int
+  name: String!
+  originalName: String!
+  previewImageId: Int
+  primaryFigureImageId: Int
+  primaryFigureName: String
+  primaryFigureNumber: Float
+}
+
+input CreateNftPageInput {
+  description: String
+  newReleasePreviewId: Float
+  premiumSetCatalogPreviewId: Float
+  premiumSetDescription: String
+  premiumSetId: Float
+  premiumSetPrice: Float
+  premiumSetQuantity: Float
+  premiumSetStock: Float
+  standartSetCatalogPreviewId: Float
+  standartSetDescription: String
+  standartSetId: Float
+  standartSetPrice: Float
+  standartSetQuantity: Float
+  standartSetStock: Float
+  timer: DateTime
+}
+
+input CreateProductInput {
+  catalogPreviewId: Int
+  category: String
+  description: String
+  exclusive: String
+  features: [String!]
+  images: [Int!]
+  name: String!
+  new: Boolean
+  nftId: Float
+  nftPreviewId: Int
+  number: Float!
+  price: Float
+  seriesId: Float
+  seriesPreviewId: Int
+  stickers: [Int!]
+  stock: Float
+  whereToShow: [String!]
+}
+
+input CreateSeriesInput {
+  imageId: Int
+  name: String!
+  originalName: String!
+  previewImageId: Int
+  primaryFigureImageId: Int
+  primaryFigureName: String
+  primaryFigureNumber: Float
+}
+
+input CreateUserInput {
+  apartment: String
+  building: String
+  cart: JSON
+  city: String
+  country: String
+  email: String
+  entrance: String
+  firstName: String
+  floor: String
+  house: String
+  intercom: String
+  login: String!
+  password: String!
+  phone: String
+  role: Role
+  secondName: String
+  social: String
+  street: String
+}
+
+input CreateUserNftInput {
+  checkedItems: [Int!]!
+  nftId: Float!
+  saved: Boolean
+  userId: Float!
+}
+
+input CreateUserSeryInput {
+  checkedItems: [Int!]!
+  saved: Boolean
+  seriesId: Float!
+  userId: Float!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input GetCartItemsArgs {
+  ids: [Int!]!
+}
+
+input GetImagesArgs {
+  orderBy: OrderBy
+  pagination: Pagination
+  search: String
+}
+
+input GetNftArgs {
+  orderBy: OrderBy
+  pagination: Pagination
+  search: String
+}
+
+input GetProductsArgs {
+  category: String
+  isAvailable: Boolean
+  orderBy: OrderBy
+  pagination: Pagination
+  search: String
+  whereToShow: String
+}
+
+input GetSeriesArgs {
+  orderBy: OrderBy
+  pagination: Pagination
+  search: String
+}
+
+input GetUsersArgs {
+  orderBy: OrderBy
+  pagination: Pagination
+  search: String
+}
+
+type Image {
+  createdAt: DateTime
+  id: Int!
+  name: String!
+  updatedAt: DateTime
+  url: String!
+}
+
+type ImagesResponse {
+  data: [Image!]!
+  meta: Meta
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type Meta {
+  pagination: MetaPagination
+}
+
+type MetaPagination {
+  page: Int!
+  pageCount: Int!
+  pageSize: Int!
+  total: Int!
+}
+
+type Mutation {
+  createImage(createImageInput: CreateImageInput!): Image!
+  createNft(createNftInput: CreateNftInput!): Nft!
+  createNftPage(createNftPageInput: CreateNftPageInput!): NftPage!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  createSeries(createSeriesInput: CreateSeriesInput!): Series!
+  createUser(createUserInput: CreateUserInput!): User!
+  createUserNft(createUserNftInput: CreateUserNftInput!): UserNft!
+  createUserSery(createUserSeryInput: CreateUserSeryInput!): UserSery!
+  removeImage(id: Int!): Boolean!
+  removeNft(id: Int!): Nft!
+  removeNftPage(id: Int!): NftPage!
+  removeProduct(id: Int!): Product!
+  removeSeries(id: Int!): Series!
+  removeUser(id: Int!): User!
+  removeUserNft(id: Int!): UserNft!
+  removeUserSery(id: Int!): UserSery!
+  signIn(signInInput: SignInInput!): AuthResponse!
+  signOut: Boolean!
+  signUp(signUpInput: SignUpInput!): AuthResponse!
+  tokensRefresh: AuthResponse!
+  updateImage(updateImageInput: UpdateImageInput!): Image!
+  updateMe(updateMeInput: UpdateMeInput!): User!
+  updateNft(updateNftInput: UpdateNftInput!): Nft!
+  updateNftPage(updateNftPageInput: UpdateNftPageInput!): NftPage!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  updateSeries(updateSeriesInput: UpdateSeriesInput!): Series!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  updateUserNft(updateUserNftInput: UpdateUserNftInput!): UserNft!
+  updateUserSery(updateUserSeryInput: UpdateUserSeryInput!): UserSery!
+  uploadFile(file: [Upload!]!): Boolean!
+}
+
+type Nft {
+  calendarImage: Image
+  createdAt: DateTime
+  event1_date: DateTime
+  event1_desc: String
+  event2_date: DateTime
+  event2_desc: String
+  event3_date: DateTime
+  event3_desc: String
+  event4_completed: Boolean
+  event4_desc: String
+  event4_quarter: Float
+  id: Float!
+  image: Image
+  name: String!
+  originalName: String!
+  preview: Image
+  primaryFigureImage: Image
+  primaryFigureName: String
+  primaryFigureNumber: Float
+  products: [Product!]
+  updatedAt: DateTime
+}
+
+type NftPage {
+  description: String
+  id: Float!
+  newReleasePreview: Image
+  newReleasePreviewId: Float
+  premiumSet: Product
+  premiumSetQuantity: Float
+  standartSet: Product
+  standartSetQuantity: Float
+  timer: DateTime
+}
+
+type NftResponse {
+  data: [Nft!]!
+  meta: Meta
+}
+
+input OrderBy {
+  field: String!
+  value: Sort!
+}
+
+input Pagination {
+  page: Int!
+  pageSize: Int!
+}
+
+type Product {
+  catalogPreview: Image
+  category: String
+  createdAt: DateTime
+  description: String
+  exclusive: String
+  features: [String!]
+  id: Float!
+  images: [Image!]
+  name: String!
+  new: Boolean!
+  nft: Nft
+  nftId: Float
+  nftPreview: Image
+  number: Float!
+  price: Float!
+  series: Series
+  seriesId: Float
+  seriesPreview: Image
+  stickers: [Image!]
+  stock: Float!
+  type: ProductType!
+  updatedAt: DateTime
+  whereToShow: [String!]
+}
+
+enum ProductType {
+  CardsSet
+  Figure
+}
+
+type ProductsResponse {
+  data: [Product!]!
+  meta: Meta
+}
+
+type Query {
+  cartItems(args: GetCartItemsArgs!): [Product!]!
+  checkSuperUser: Boolean!
+  findAllSeries(args: GetSeriesArgs): SeriesResponse!
+  findOneSeries(id: Int!): Series!
+  getAdmin: User!
+  getMe: User!
+  image(id: Int!): Image!
+  images(args: GetImagesArgs): ImagesResponse!
+  nft(id: Int!): Nft!
+  nftPage: NftPage!
+  nfts(args: GetNftArgs): NftResponse!
+  product(id: Int!): Product!
+  products(args: GetProductsArgs): ProductsResponse!
+  user(id: Int!): User!
+  userNft(id: Int!): UserNft!
+  userSeries: [UserSery!]!
+  userSery(id: Int!): UserSery!
+  users(args: GetUsersArgs): UsersResponse!
+}
+
+enum Role {
+  ADMIN
+  SUPER_ADMIN
+  USER
+}
+
+type Series {
+  createdAt: DateTime
+  id: Float!
+  image: Image
+  name: String!
+  originalName: String!
+  preview: Image
+  primaryFigureImage: Image
+  primaryFigureName: String
+  primaryFigureNumber: Float
+  products: [Product!]
+  updatedAt: DateTime
+}
+
+type SeriesResponse {
+  data: [Series!]!
+  meta: Meta
+}
+
+input SignInInput {
+  login: String!
+  password: String!
+  remember: Boolean
+}
+
+input SignUpInput {
+  login: String!
+  password: String!
+  role: Role!
+}
+
+enum Sort {
+  asc
+  desc
+}
+
+input UpdateImageInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateMeInput {
+  apartment: String
+  building: String
+  cart: JSON
+  city: String
+  country: String
+  email: String
+  entrance: String
+  firstName: String
+  floor: String
+  house: String
+  intercom: String
+  login: String
+  password: String
+  phone: String
+  secondName: String
+  social: String
+  street: String
+}
+
+input UpdateNftInput {
+  calendarImageId: Int
+  event1_date: DateTime
+  event1_desc: String
+  event2_date: DateTime
+  event2_desc: String
+  event3_date: DateTime
+  event3_desc: String
+  event4_completed: Boolean
+  event4_desc: String
+  event4_quarter: Float
+  id: Int!
+  imageId: Int
+  name: String
+  originalName: String
+  previewImageId: Int
+  primaryFigureImageId: Int
+  primaryFigureName: String
+  primaryFigureNumber: Float
+}
+
+input UpdateNftPageInput {
+  description: String
+  id: Int!
+  newReleasePreviewId: Float
+  premiumSetCatalogPreviewId: Float
+  premiumSetDescription: String
+  premiumSetId: Float
+  premiumSetPrice: Float
+  premiumSetQuantity: Float
+  premiumSetStock: Float
+  standartSetCatalogPreviewId: Float
+  standartSetDescription: String
+  standartSetId: Float
+  standartSetPrice: Float
+  standartSetQuantity: Float
+  standartSetStock: Float
+  timer: DateTime
+}
+
+input UpdateProductInput {
+  catalogPreviewId: Int
+  category: String
+  description: String
+  exclusive: String
+  features: [String!]
+  id: Int!
+  images: [Int!]
+  name: String
+  new: Boolean
+  nftId: Float
+  nftPreviewId: Int
+  number: Float
+  price: Float
+  seriesId: Float
+  seriesPreviewId: Int
+  stickers: [Int!]
+  stock: Float
+  whereToShow: [String!]
+}
+
+input UpdateSeriesInput {
+  id: Int!
+  imageId: Int
+  name: String
+  originalName: String
+  previewImageId: Int
+  primaryFigureImageId: Int
+  primaryFigureName: String
+  primaryFigureNumber: Float
+}
+
+input UpdateUserInput {
+  apartment: String
+  building: String
+  cart: JSON
+  city: String
+  country: String
+  email: String
+  entrance: String
+  firstName: String
+  floor: String
+  house: String
+  id: Int!
+  intercom: String
+  login: String
+  password: String
+  phone: String
+  role: Role
+  secondName: String
+  social: String
+  street: String
+}
+
+input UpdateUserNftInput {
+  checkedItems: [Int!]
+  id: Int!
+  nftId: Float
+  saved: Boolean
+  userId: Float
+}
+
+input UpdateUserSeryInput {
+  checkedItems: [Int!]
+  id: Int!
+  saved: Boolean
+  seriesId: Float
+  userId: Float
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type User {
+  apartment: String
+  building: String
+  cart: JSON
+  city: String
+  country: String
+  email: String
+  entrance: String
+  firstName: String
+  floor: String
+  house: String
+  id: Int!
+  intercom: String
+  login: String!
+  password: String!
+  phone: String
+  role: Role
+  secondName: String
+  social: String
+  street: String
+  userNfts: [UserNft!]
+  userSeries: [UserSery!]
+}
+
+type UserNft {
+  checkedItems: [Product!]
+  createdAt: DateTime!
+  id: Float!
+  nft: Nft
+  nftId: Float!
+  saved: Boolean!
+  updatedAt: DateTime!
+  userId: Float!
+}
+
+type UserSery {
+  checkedItems: [Product!]
+  createdAt: DateTime!
+  id: Float!
+  saved: Boolean!
+  series: Series
+  seriesId: Float!
+  updatedAt: DateTime!
+  userId: Float!
+}
+
+type UsersResponse {
+  data: [User!]!
+  meta: Meta
+}
