@@ -1,12 +1,12 @@
-import { Catalog } from '@/screens/catalog'
+import { CatalogScreen } from '@/screens/catalog'
 
-const screen = () => {
+const Catalog= () => {
 
   return (
-     <Catalog/>
+     <CatalogScreen/>
   )
 }
 
 
 
-export default screen
+export default Catalog

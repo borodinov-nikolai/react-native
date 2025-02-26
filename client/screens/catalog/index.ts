@@ -1,1 +1,1 @@
-export {Catalog} from './ui/root'
+export {CatalogScreen} from './ui/root'

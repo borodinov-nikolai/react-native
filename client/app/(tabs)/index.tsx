@@ -1,7 +1,7 @@
 import { globalStyles } from '@/shared/styles/global'
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, View } from 'react-native'
 
-const Index = () => {
+const Home = () => {
   return (
     <SafeAreaView style={globalStyles.safeArea} >
       <View style={globalStyles.container} >
@@ -13,4 +13,4 @@ const Index = () => {
 const styles = StyleSheet.create({
 
 })
-export default Index 
+export default Home

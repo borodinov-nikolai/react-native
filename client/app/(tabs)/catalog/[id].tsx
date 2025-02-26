@@ -5,7 +5,7 @@ import { useLocalSearchParams } from "expo-router"
 import { SafeAreaView, StyleSheet, Text, View } from "react-native"
 
 
-const screen = () => {
+const product = () => {
     const {id} = useLocalSearchParams()
     const {data} = useQuery(GET_PRODUCT, {variables: {input: +id}})
     const product = data?.product
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default screen
+export default product
