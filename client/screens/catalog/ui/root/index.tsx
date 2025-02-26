@@ -1,40 +1,43 @@
 import { GET_PRODUCTS } from "@/entities/product";
 import { globalStyles } from "@/shared/styles/global";
 import { useQuery } from "@apollo/client";
-import { FlatList, Text, View } from "react-native";
-import { Searchbar } from "react-native-paper";
+import { FlatList, SafeAreaView, Text, TextInput, View } from "react-native";
+import { Chip, Menu } from "react-native-paper";
 import { useState } from "react";
 import ProductCard from "../productCard";
 import { styles } from "./styles";
-import { Picker } from "@react-native-picker/picker";
+import { Sort } from "@/shared/gql/graphql";
 
 export const Catalog = () => {
   const [visible, setVisible] = useState<boolean>(false)
   const [search, setSearch] = useState<string>('')
-  const [selected, setSelected] = useState<string>("1")
+  const [selected, setSelected] = useState<string>('price:asc')
   const {data, loading} = useQuery(GET_PRODUCTS, { 
-    variables: { input: { pagination: { page: 1, pageSize: 10}, search: search } }
+    variables: { input: { pagination: { page: 1, pageSize: 10}, search: search, orderBy: {field: selected.split(':')[0], value: selected.split(':')[1] as Sort} } }
   });
 
+
+  const onItemChange = (value: string)=> {
+    setSelected(value)
+    setVisible(false)
+  }
 
 
 
   return (
+    <SafeAreaView style={globalStyles.safeArea} >
     <View style={globalStyles.container}>
-      <Text style={globalStyles.h1}>Catalog</Text>
       <View> 
-        <Searchbar style={styles.search} onChangeText={(value)=> setSearch(value)} value={search} placeholder="Поиск" />
+        <TextInput placeholderTextColor={'rgb(121, 114, 122)'} style={styles.search} onChangeText={(value)=> setSearch(value)} value={search} placeholder="Поиск" />
         <View style={styles.selectHolder} >
-          <Text>Сортировка</Text>
-          <Picker
-                  selectedValue={selected}
-                  onValueChange={(itemValue) => setSelected(itemValue)}
-                  style={{ height: 50, width: 200}}
+          <Menu
+          visible={visible}
+          onDismiss={()=> setVisible(false)}
+          anchor={<Chip onPress={()=> setVisible(true)} >{selected === 'price:asc' ? 'Цена (По возрастанию)' : 'Цена (По убыванию)'}</Chip>}          
           >
-             <Picker.Item label="Выберите вариант" value="1"  />
-            <Picker.Item value='price:asc' label='Цена (По возврастанию)' />
-            <Picker.Item value='price:desc' label='Цена (По убыванию)' />
-          </Picker>
+            <Menu.Item title='Цена (По возрастанию)' onPress={()=> onItemChange('price:asc')} />
+            <Menu.Item title='Цена (По убыванию)' onPress={()=> onItemChange('price:desc')} />
+          </Menu>
         </View>
          </View>
      { !loading && data?.products?.data && 
@@ -48,6 +51,7 @@ export const Catalog = () => {
         }}
       />}
     </View>
+    </SafeAreaView>
   );
 }
 

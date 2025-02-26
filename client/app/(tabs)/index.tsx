@@ -5,7 +5,6 @@ const Index = () => {
   return (
     <SafeAreaView style={globalStyles.safeArea} >
       <View style={globalStyles.container} >
-      <Text style={globalStyles.h1} >Home</Text>
       </View>
     </SafeAreaView>
   )
