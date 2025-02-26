@@ -8,14 +8,17 @@ export const GET_PRODUCTS = graphql(`
         products(args: $input) {
           data {
             id
+            type
             number
             name
             price
             features
             exclusive
             stock
+            new
             series {
               id
+              name
               originalName
             }
             catalogPreview {

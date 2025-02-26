@@ -13,6 +13,16 @@ const tabs = [
     id: 2,
     icon: <Ionicons color={'#fff'} name='list' size={24} />,
     href: '/catalog'
+  },
+  {
+    id: 3,
+    icon: <Ionicons color={'#fff'} name='cart' size={24} />,
+    href: '/cart'
+  },
+  {
+    id: 4,
+    icon: <Ionicons color={'#fff'} name='settings' size={24} />,
+    href: '/'
   }
 ]
 

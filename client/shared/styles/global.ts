@@ -14,6 +14,10 @@ export const globalStyles = StyleSheet.create({
     },
     h1: {
       color: '#fff',
-      fontSize: 24
+      fontSize: 2
+    },
+    p: {
+      color: '#fff',
+      fontSize: 16
     }
   })
