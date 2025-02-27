@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 
@@ -22,6 +23,8 @@ const initialState: ICartState = {
     totalQuantity: 0,
 }
 
+
+
 const _cartSlice = createSlice({
     name: 'cart',
     initialState,
@@ -36,7 +39,7 @@ const _cartSlice = createSlice({
               state.cartItems = []
               state.totalQuantity = 0
               state.boxQuantity = 0
-              localStorage.removeItem('cart')
+              AsyncStorage.removeItem('cart')
         },
         addCartItem: (state, action: PayloadAction<CartItem>) => {
                 const cartItem = action.payload
@@ -56,7 +59,7 @@ const _cartSlice = createSlice({
                 }
                 state.totalQuantity = state.cartItems.reduce((sum, item) => sum + item.quantity, 0)
                 const cartString = JSON.stringify(state)
-                window.localStorage.setItem('cart', cartString)
+                AsyncStorage.setItem('cart', cartString)
         },
    
         removeCartItem: (state, action: PayloadAction<{id: number}>)=> {
@@ -65,7 +68,7 @@ const _cartSlice = createSlice({
                 state.totalQuantity = state.cartItems.reduce((sum, item) => sum + item.quantity, 0)
 
                 const cartString = JSON.stringify(state)
-                window.localStorage.setItem('cart', cartString)
+                AsyncStorage.setItem('cart', cartString)
         },
 
         setCartItemQuantity:(state, action: PayloadAction<{id: number, quantity: number}>)=> {
@@ -79,13 +82,13 @@ const _cartSlice = createSlice({
                state.cartItems = newArray
                state.totalQuantity = state.cartItems.reduce((sum, item) => sum + item.quantity, 0)
                const cartString = JSON.stringify(state)
-               window.localStorage.setItem('cart', cartString)
+               AsyncStorage.setItem('cart', cartString)
         },
 
         setBoxQuantity:( state, action: PayloadAction<number> )=> {
                 state.boxQuantity = action.payload
                 const cartString = JSON.stringify(state)
-                window.localStorage.setItem('cart', cartString)
+                AsyncStorage.setItem('cart', cartString)
         }
 }
 })

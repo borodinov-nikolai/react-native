@@ -1,10 +1,14 @@
+import { selectCart } from "@/entities/cart"
+import { useAppSelector } from "@/shared/hooks/reduxToolkit"
 import { Ionicons } from "@expo/vector-icons"
 import { Tabs } from "expo-router"
+import { StyleSheet, View } from "react-native"
+import { Badge } from "react-native-paper"
 
 
 const TabsLayout = () => {
 
-
+const cart = useAppSelector(selectCart)
 
   return (
     <Tabs screenOptions={{headerShown: false, animation: 'none'}} >
@@ -32,7 +36,10 @@ const TabsLayout = () => {
                 options={{
                     title: 'Корзина',
                     tabBarIcon: ({ focused, color }) => (
-                        <Ionicons name={focused ? "cart-sharp" : "cart-outline"} color={color} size={24} />
+                        <View style={styles.container} >
+                      <Badge size={15} style={styles.badge} >{cart?.totalQuantity}</Badge>
+                      <Ionicons name={focused ? "cart-sharp" : "cart-outline"} color={color} size={24} /> 
+                      </View>
                     )
                 }}
             />
@@ -46,9 +53,21 @@ const TabsLayout = () => {
                     )
                 }}
             />
-
     </Tabs>
   )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'column',
+        position: 'relative'
+    },
+    badge: {
+        position: 'absolute',
+        right: -5,
+        top: -3,
+        zIndex: 1
+    }
+})
 
 export default TabsLayout

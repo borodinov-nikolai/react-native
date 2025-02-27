@@ -3,17 +3,23 @@ import { Provider } from "react-native-paper";
 import { Stack } from "expo-router";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "@/shared/store";
+import { SaveAndLoadCart } from "@/features/saveAndLoadCart";
+
+
 
 
 export default function RootLayout() {
 
   return (
-     <ApolloProvider>
+    <ApolloProvider>
       <ReduxProvider store={store} > 
       <Provider >
-     <Stack screenOptions={{headerShown: false}} >
-      <Stack.Screen name='(tabs)' />
-     </Stack>
+       <>
+       <SaveAndLoadCart/>
+       <Stack screenOptions={{headerShown: false}} >
+        <Stack.Screen name='(tabs)' />
+       </Stack>
+       </>
   </Provider>
   </ReduxProvider>
   </ApolloProvider>

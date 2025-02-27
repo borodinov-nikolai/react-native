@@ -1,10 +1,11 @@
 import { serverUrl } from "@/shared/constants"
 import { Product } from "@/shared/gql/graphql"
-import { Link } from "expo-router"
+import { useRouter } from "expo-router"
 import { FC } from "react"
-import { Image, Text, View } from "react-native"
+import { Image, Pressable, Text} from "react-native"
 import { Button } from "react-native-paper"
 import { styles } from "./styles"
+import { AddToCart } from "@/features/addToCart"
 
 
 type Props = {
@@ -13,9 +14,10 @@ type Props = {
 
 const ProductCard: FC<Props> = ({product}) => {
     const {id, name, catalogPreview, price} = product
+    const router = useRouter()
   return (
-    <Link href={{pathname: '/catalog/[id]', params: {id}}}   >
-      <View style={styles.item} >
+
+      <Pressable onPress={()=> router.push(`/catalog/${id}`)} style={styles.item} >
               {catalogPreview?.url && (
                 <Image
                   width={100}
@@ -26,9 +28,9 @@ const ProductCard: FC<Props> = ({product}) => {
               )}
             <Text>{name}</Text>
             <Text style={styles.price} >{price} ₽</Text>
-            <Button style={styles.btn} mode='contained' >В корзину</Button>
-          </View>
-    </Link>
+            <AddToCart id={id} ><Button style={styles.btn} mode='contained' >В корзину</Button></AddToCart>
+          </Pressable>
+
   )
 }
 
