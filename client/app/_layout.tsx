@@ -5,6 +5,8 @@ import { Provider as ReduxProvider } from "react-redux";
 import { store } from "@/shared/store";
 import { SaveAndLoadCart } from "@/features/saveAndLoadCart";
 import { Navbar } from "@/widgets/navbar";
+import { NavigationContainer } from "@react-navigation/native";
+
 
 
 
@@ -17,12 +19,12 @@ export default function RootLayout() {
       <Provider >
        <>
        <SaveAndLoadCart/>
-       <Stack screenOptions={{headerShown: false}} >
+       <Stack screenOptions={{headerShown: false, contentStyle: {backgroundColor: "rgba(36, 32, 61, 1)"}, animation: 'none' }} >
         <Stack.Screen name='index'/>
         <Stack.Screen name='catalog/[id]'/>
         <Stack.Screen name='catalog/index'/>
         <Stack.Screen name='profile/index'/>
-        <Stack.Screen name='auth/index'/>
+        <Stack.Screen name='profile/auth/index'/>
         <Stack.Screen name='cart/index'/>
         <Stack.Screen name='+not-found'/>
        </Stack>

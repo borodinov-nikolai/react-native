@@ -16,7 +16,7 @@ const Profile = () => {
   useFocusEffect(
     useCallback(()=> {
       if(!data) {
-        router.replace('/auth')
+        router.replace('/profile/auth')
       }
     }, [data]
   )
