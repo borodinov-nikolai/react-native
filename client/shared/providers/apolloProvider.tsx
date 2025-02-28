@@ -36,7 +36,7 @@ const ApolloProvider = ({ children }: { children: ReactNode }) => {
     };
   });
 
-  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+  const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) => {
     if (graphQLErrors) {
       const forbiddenError = graphQLErrors.find(
         ({ extensions }) => extensions?.code === 'FORBIDDEN'

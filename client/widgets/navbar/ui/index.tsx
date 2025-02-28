@@ -21,8 +21,8 @@ const tabs = [
   },
   {
     id: 4,
-    icon: <Ionicons color={'#fff'} name='settings' size={24} />,
-    href: '/settings'
+    icon: <Ionicons color={'#fff'} name='person' size={24} />,
+    href: '/profile'
   }
 ]
 

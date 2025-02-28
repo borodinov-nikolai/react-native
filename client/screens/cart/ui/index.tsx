@@ -3,6 +3,7 @@ import { useAppSelector } from '@/shared/hooks/reduxToolkit'
 import { globalStyles } from '@/shared/styles/global'
 import { useQuery } from '@apollo/client'
 import { FlatList, SafeAreaView, Text, View } from 'react-native'
+import { styles } from './styles'
 
 export const CartScreen = () => {
   const cart = useAppSelector(selectCart)
@@ -15,7 +16,7 @@ export const CartScreen = () => {
            data={cartItems?.cartItems}
            keyExtractor={(item)=> item.id.toString()}
            renderItem={({item})=> (
-            <View><Text>{item.name}</Text></View>
+            <View><Text style={styles.text} >{item.name}</Text></View>
            )}
           />
         </View>
