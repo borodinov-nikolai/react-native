@@ -1,7 +1,6 @@
-import { Feather, Ionicons } from "@expo/vector-icons"
+import { Ionicons } from "@expo/vector-icons"
 import { useNavigationState } from "@react-navigation/native"
 import { Link, RelativePathString } from "expo-router"
-import { useState } from "react"
 import { StyleSheet, View } from "react-native"
 
 
