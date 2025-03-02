@@ -1,4 +1,4 @@
-import { globalStyles } from '@/src/shared/styles/global'
+import { globalStyles } from '@/shared/styles/global'
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 
 const Home = () => {

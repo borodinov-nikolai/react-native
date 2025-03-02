@@ -1,8 +1,8 @@
-import { globalStyles } from "@/src/shared/styles/global"
+import { globalStyles } from "@/shared/styles/global"
 import { Dispatch, FC, SetStateAction, useState } from "react"
 import { ScrollView, Text, TextInput, View } from "react-native"
 import { Chip, Menu } from "react-native-paper"
-import { styles } from "./styles"
+
 
 type Props = {
     search: string
@@ -25,19 +25,20 @@ const Filters: FC<Props> = ({search, setSearch, sort, setSort, category, setCate
 
   return (
     <View> 
-    <TextInput placeholderTextColor={'rgb(121, 114, 122)'} style={styles.search} onChangeText={(value)=> setSearch(value)} value={search} placeholder="Поиск" />
+    <TextInput className={'mt-[10px] border border-color border-slate-400 p-[10px] rounded-[10px] text-white'} placeholderTextColor={'rgb(121, 114, 122)'} onChangeText={(value)=> setSearch(value)} value={search} placeholder="Поиск" />
       <ScrollView
-       contentContainerStyle={styles.categoriesList}
+       className={'mt-[10px]'}
+       contentContainerStyle={{gap: 10}}
        horizontal
        pagingEnabled
        showsHorizontalScrollIndicator={false}
        >
           {cartegories.map((item)=> (
-            <Text onPress={()=> setCategory(item)} key={item} style={[globalStyles.p, category === item && styles.checkedCategory]} >{item}</Text>
+            <Text onPress={()=> setCategory(item)} key={item} style={[globalStyles.p, category === item && {color: 'blue'}]} >{item}</Text>
           ))}
        
       </ScrollView>
-    <View style={styles.selectHolder} >
+    <View className={'mt-[10px] flex-row justify-end'} >
       <Menu visible={visible}
       onDismiss={()=> setVisible(false)}
       anchor={<Chip onPress={()=> setVisible(true)} >{sort === 'price:asc' ? 'Цена (По возрастанию)' : 'Цена (По убыванию)'}</Chip>}          

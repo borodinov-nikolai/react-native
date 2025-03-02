@@ -3,7 +3,7 @@ import { ApolloClient, ApolloLink, InMemoryCache, Observable, ApolloProvider as 
 import { ReactNode } from 'react'
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
-import { TOKENS_REFRESH } from '@/src/entities/auth';
+import { TOKENS_REFRESH } from '@/entities/auth';
 import createUploadLink from 'apollo-upload-client/createUploadLink.mjs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 

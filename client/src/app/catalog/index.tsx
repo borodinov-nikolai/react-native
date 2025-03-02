@@ -1,4 +1,4 @@
-import { CatalogScreen } from '@/src/screens/catalog'
+import { CatalogScreen } from '@/screens/catalog'
 
 const Catalog= () => {
 

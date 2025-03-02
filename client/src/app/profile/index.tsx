@@ -1,5 +1,5 @@
-import { GET_ME } from "@/src/entities/user"
-import { ProfileScreen } from "@/src/screens/profile"
+import { GET_ME } from "@/entities/user"
+import { ProfileScreen } from "@/screens/profile"
 import { useQuery } from "@apollo/client"
 import { router, useFocusEffect, useRouter } from "expo-router"
 import { useCallback } from "react"

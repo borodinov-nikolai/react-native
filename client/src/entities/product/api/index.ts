@@ -1,4 +1,4 @@
-import { graphql } from "@/src/shared/gql";
+import { graphql } from "@/shared/gql";
 
 
 

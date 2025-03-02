@@ -1,4 +1,4 @@
-import { RootState } from "@/src/shared/store";
+import { RootState } from "@/shared/store";
 
 
 

@@ -1,10 +1,9 @@
-import { GET_ME } from "@/src/entities/user"
-import { globalStyles } from "@/src/shared/styles/global"
+import { GET_ME } from "@/entities/user"
+import { globalStyles } from "@/shared/styles/global"
 import { useApolloClient, useMutation, useQuery } from "@apollo/client"
 import { SafeAreaView, Text, View } from "react-native"
-import { styles } from "./styles"
 import { Button } from "react-native-paper"
-import { SIGN_OUT } from "@/src/entities/auth"
+import { SIGN_OUT } from "@/entities/auth"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { useRouter } from "expo-router"
 
@@ -34,7 +33,7 @@ export const ProfileScreen = () => {
     <SafeAreaView style={globalStyles.safeArea} >
         <View style={globalStyles.container} >
         <Text style={globalStyles.h1} >{data?.getMe?.login}</Text>
-         <View style={styles.content} >
+         <View className={'justify-center items-center mt-8'} >
             <Button onPress={onSubmit} mode='contained' >Выйти</Button>
          </View>
         </View>

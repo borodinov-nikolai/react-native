@@ -1,11 +1,11 @@
-import { serverUrl } from "@/src/shared/constants"
-import { Product } from "@/src/shared/gql/graphql"
+import { serverUrl } from "@/shared/constants"
+import { Product } from "@/shared/gql/graphql"
 import { useRouter } from "expo-router"
 import { FC } from "react"
 import { Dimensions, Image, Pressable, Text} from "react-native"
 import { Button } from "react-native-paper"
 import { styles } from "./styles"
-import { AddToCart } from "@/src/features/addToCart"
+import { AddToCart } from "@/features/addToCart"
 
 
 type Props = {

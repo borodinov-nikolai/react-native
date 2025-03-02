@@ -1,4 +1,4 @@
-import { cartSlice } from '@/src/entities/cart'
+import { cartSlice } from '@/entities/cart'
 import { configureStore } from '@reduxjs/toolkit'
 
 

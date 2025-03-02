@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons"
 import { useNavigationState } from "@react-navigation/native"
 import { Link, RelativePathString } from "expo-router"
-import { StyleSheet, View } from "react-native"
+import { View } from "react-native"
 
 
 type Tabs = {
@@ -39,7 +39,7 @@ export const Navbar = () => {
   current = current === 'index' ? '' : current
   console.log(current)
   return (
-    <View style={styles.container} >
+    <View style={{backgroundColor: 'rgba(36, 32, 61, 1)'}} className={" flex-row h-[70px] w-full justify-around items-center border-t border-[#ddd] "} >
       {
         tabs.map(({id, icon, href})=> (
           <Link key={id} href={href as RelativePathString} ><Ionicons color={`/${current}` === href ? 'rgb(59, 117, 211)' : '#fff'} name={icon} size={28} /></Link>
@@ -49,16 +49,4 @@ export const Navbar = () => {
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-      height: 70,
-      width: '100%',
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      alignItems: 'center',
-      borderTopWidth: 1,
-      borderTopColor: '#ddd',
-      backgroundColor: "rgba(36, 32, 61, 1)"
-  }
-})
 

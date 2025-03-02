@@ -1,4 +1,4 @@
-import { CartScreen } from "@/src/screens/cart"
+import { CartScreen } from "@/screens/cart"
 
 
 

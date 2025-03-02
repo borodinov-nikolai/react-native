@@ -1,5 +1,5 @@
-import { addCartItem } from "@/src/entities/cart"
-import { useAppDispatch } from "@/src/shared/hooks/reduxToolkit"
+import { addCartItem } from "@/entities/cart"
+import { useAppDispatch } from "@/shared/hooks/reduxToolkit"
 import { FC, ReactNode } from "react"
 import { GestureResponderEvent, Pressable } from "react-native"
 

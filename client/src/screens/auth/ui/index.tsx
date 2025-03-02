@@ -1,12 +1,11 @@
-import { globalStyles } from '@/src/shared/styles/global'
+import { globalStyles } from '@/shared/styles/global'
 import { SafeAreaView, Text, View } from 'react-native'
-import { styles } from './styles'
 import { Button, TextInput } from 'react-native-paper'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useMutation, useQuery } from '@apollo/client'
-import { SIGN_IN } from '@/src/entities/auth'
+import { SIGN_IN } from '@/entities/auth'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { GET_ME } from '@/src/entities/user'
+import { GET_ME } from '@/entities/user'
 import { useRouter } from 'expo-router'
 
 type FormValues = {
@@ -47,8 +46,8 @@ export const AuthScreen = () => {
     <SafeAreaView style={globalStyles.safeArea} >
       <View style={globalStyles.container} >
         <Text style={globalStyles.h1} >Авторизация</Text>
-        <View style={styles.content} >
-          <View style={styles.form} >
+        <View className={'flex-1 justify-center items-center'} >
+          <View className={'mt-[40px] h-auto w-[80%] bg-white rounded-[20px] px-[20px] py-[40px] gap-[20px] flex flex-col'}  >
             <Controller
               name='login'
               control={control}

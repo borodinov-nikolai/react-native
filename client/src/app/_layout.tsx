@@ -1,10 +1,10 @@
-import ApolloProvider from "@/src/shared/providers/apolloProvider";
+import ApolloProvider from "@/shared/providers/apolloProvider";
 import { Provider } from "react-native-paper";
 import { Stack } from "expo-router";
 import { Provider as ReduxProvider } from "react-redux";
-import { store } from "@/src/shared/store";
-import { SaveAndLoadCart } from "@/src/features/saveAndLoadCart";
-import { Navbar } from "@/src/widgets/navbar";
+import { store } from "@/shared/store";
+import { SaveAndLoadCart } from "@/features/saveAndLoadCart";
+import { Navbar } from "@/widgets/navbar";
 import '../shared/styles/global.css'
 
 

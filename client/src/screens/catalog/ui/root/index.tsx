@@ -1,12 +1,12 @@
-import { GET_PRODUCTS } from "@/src/entities/product";
-import { globalStyles } from "@/src/shared/styles/global";
+import { GET_PRODUCTS } from "@/entities/product";
+import { globalStyles } from "@/shared/styles/global";
 import { useQuery } from "@apollo/client";
 import { FlatList, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
 import { Chip, Menu } from "react-native-paper";
 import { useState } from "react";
 import ProductCard from "../productCard";
 import { styles } from "./styles";
-import { Sort } from "@/src/shared/gql/graphql";
+import { Sort } from "@/shared/gql/graphql";
 import Filters from "../filters";
 
 export const CatalogScreen = () => {
